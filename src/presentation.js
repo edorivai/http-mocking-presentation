@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Import React
 import React from "react";
 import styled from "react-emotion";
@@ -26,6 +27,13 @@ import {
 import createTheme from "spectacle/lib/themes/default";
 
 import { stormAlert } from "./examples/mocking-base.example.js";
+import {
+  nockSimple,
+  nockAdvanced,
+  nockComplex,
+  nockRefactored,
+  nockTestRefactored
+} from "./examples/nock.js";
 
 // Require CSS
 require("normalize.css");
@@ -43,8 +51,8 @@ const theme = createTheme(
     quaternary: "#CECECE"
   },
   {
-    primary: "Montserrat",
-    secondary: "Helvetica"
+    primary: "Quicksand",
+    secondary: "Roboto"
   }
 );
 
@@ -193,27 +201,113 @@ export default function Presentation() {
         ]}
       />
 
-      {/* : Asking Kent C. Dodds */}
+      {/* 7: Asking Kent C. Dodds */}
+      <Slide>
+        <Heading textColor="secondary">How to mock HTTP requests?</Heading>
+      </Slide>
+
+      {/* 8: Asking Kent C. Dodds */}
       <Slide>
         <Image src="/kent.png" />
       </Slide>
 
-      <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-        <Heading size={6} textColor="secondary" caps>
-          Standard List
-        </Heading>
-        <List>
-          <ListItem>Item 1</ListItem>
-          <ListItem>Item 2</ListItem>
-          <ListItem>Item 3</ListItem>
-          <ListItem>Item 4</ListItem>
-        </List>
+      {/* 9: Nock - simplified example */}
+      <CodeSlide
+        textSize={18}
+        lang="js"
+        code={nockSimple}
+        ranges={[
+          { loc: [0, 15], title: "Nock" },
+          { loc: [0, 7], title: "Your code that performs an outbound request" },
+          { loc: [8, 12], title: "Configure nock to intercept the request" },
+          { loc: [13, 15], title: "Execute the function in your tests" },
+          {
+            loc: [0, 15],
+            title: "DONE!",
+            image: "https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif"
+          }
+        ]}
+      />
+
+      {/* 10: Well, actually... */}
+      <Slide>
+        <Heading textColor="secondary">Well, actually...</Heading>
       </Slide>
-      <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-        <BlockQuote>
-          <Quote>Example Quote</Quote>
-          <Cite>Author</Cite>
-        </BlockQuote>
+
+      {/* 11: Nock - more realistic example */}
+      <CodeSlide
+        textSize={18}
+        lang="js"
+        code={nockAdvanced}
+        ranges={[
+          { loc: [0, 17], title: "A more realistic example" },
+          { loc: [19, 50], title: "Test cases" }
+        ]}
+      />
+
+      {/* 12: Nock - complex example */}
+      <CodeSlide
+        textSize={18}
+        lang="js"
+        code={nockComplex}
+        ranges={[
+          { loc: [0, 15], title: "Interceptors can get more complex..." }
+        ]}
+      />
+
+      {/* 13: Taking a step back */}
+      <Slide>
+        <Heading textColor="secondary">
+          Let's take a step back, refactor
+        </Heading>
+      </Slide>
+
+      {/* 14: Nock - refactored */}
+      <CodeSlide
+        textSize={18}
+        lang="js"
+        code={nockRefactored}
+        ranges={[
+          { loc: [0, 29], title: "Split up business- and requesting logic" },
+          { loc: [0, 14], title: "api.js handles requesting" },
+          { loc: [15, 29], title: "user.js handles business logic" }
+        ]}
+      />
+
+      {/* 15: Nock - test refactored */}
+      <CodeSlide
+        textSize={18}
+        lang="js"
+        code={nockTestRefactored}
+        ranges={[
+          { loc: [0, 26], title: "Testing user.js" },
+          { loc: [8, 11], title: "Mocking becomes straightforward" },
+          {
+            loc: [21, 22],
+            title: "Error cases are clear. No HTTP codes, just JavaScript™"
+          }
+        ]}
+      />
+
+      {/* 16: I want to test HTTP logic */}
+      <Slide>
+        <Quote textColor="secondary">
+          But the HTTP logic is exactly what I want to test!
+        </Quote>
+      </Slide>
+
+      {/* 17: Really though?! */}
+      <Slide>
+        <Quote textColor="secondary">Really though!?</Quote>
+      </Slide>
+
+      {/* 18: Really though?! */}
+      <Slide>
+        <Heading textColor="secondary">Yes, really</Heading>
+        <List textColor="white">
+          <ListItem>Well defined and simple API? Use nock.</ListItem>
+          <ListItem>Complex request/response? Keep listening.</ListItem>
+        </List>
       </Slide>
     </Deck>
   );

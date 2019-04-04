@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "esm": "^3.2.22",
     "prismjs": "^1.16.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "scrape-it": "^5.1.4",
     "spectacle-code-slide": "^0.5.2",
     "spectacle-scripts": "2.3.0"
   },
@@ -23,5 +25,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "nock": "^10.0.6",
+    "nock-record": "^0.3.3"
+  }
 }
